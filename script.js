@@ -82,12 +82,19 @@ equalSign.addEventListener('click',()=>{
 percentage.addEventListener('click', ()=>{
     let percent
     if (prevNumber) {
-        calculate()
-        percent = currentNumber * 0.01
-        updateScreen(percent)
-        equalSign.disabled = true
+        if (calculationOperator == "/") {
+            calculate()
+            percent = currentNumber * 100
+            updateScreen(percent)
+            equalSign.disabled = true
+        } else {
+            calculate()
+            percent = currentNumber / 100
+            updateScreen(percent)
+            equalSign.disabled = true
+        }
     } else {
-        percent = currentNumber * 0.01
+        percent = currentNumber  / 100
         updateScreen(percent)
         equalSign.disabled = true
     }
