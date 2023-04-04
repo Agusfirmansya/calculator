@@ -25,6 +25,7 @@ numbers.forEach((number) => {
     number.addEventListener("click",(event)=>{
         inputNumber(event.target.value)
         updateScreen(currentNumber)
+        percentage.disabled = false
     })
 })
 
@@ -66,6 +67,7 @@ const calculate = ()=>{
     currentNumber = result
     calculationOperator = ''
 }
+
 equalSign.addEventListener('click',()=>{
     if (currentNumber !== '0'){
         calculate()
@@ -78,7 +80,19 @@ equalSign.addEventListener('click',()=>{
 })
 
 percentage.addEventListener('click', ()=>{
-    updateScreen(currentNumber/100)
+    let percent
+    if (prevNumber) {
+        calculate()
+        percent = currentNumber * 0.01
+        updateScreen(percent)
+        equalSign.disabled = true
+    } else {
+        percent = currentNumber * 0.01
+        updateScreen(percent)
+        equalSign.disabled = true
+    }
+    percentage.disabled = true
+    currentNumber = percent
 })
 
 clearBtn.addEventListener("click",()=>{
