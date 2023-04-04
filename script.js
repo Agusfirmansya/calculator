@@ -57,6 +57,9 @@ const calculate = ()=>{
         case "/":
             result = parseFloat(prevNumber) / parseFloat(currentNumber)
             break;
+        case "":
+            result = parseFloat(currentNumber)
+            break;
         default:
             break;
     }
@@ -64,9 +67,14 @@ const calculate = ()=>{
     calculationOperator = ''
 }
 equalSign.addEventListener('click',()=>{
-    calculate()
-    updateScreen(currentNumber)
-    equalSign.disabled = true
+    if (currentNumber !== '0'){
+        calculate()
+        updateScreen(currentNumber)
+        equalSign.disabled = true
+    } else {
+        updateScreen('0')
+    }
+    
 })
 
 percentage.addEventListener('click', ()=>{
